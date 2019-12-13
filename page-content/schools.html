@@ -1,9 +1,15 @@
+
+<link rel="manifest" href="/it202-final/manifest.json">
+
 <h1>Total Records </h1>
 <div class="mdc-typography--headline3">Search Schools</div>
 
 
 <!-- add a select control to let users choose a school category;  you can hard-code the options or dynamically populate them from the primaryCategories variable below-->
 
+<input type="checkbox" id="ES" name="ele" value="ES" > Elementary <br>
+<input type="checkbox" id="MS" name="middle" value="MS" > Middle<br>
+<input type="checkbox" id="HS" name="high" value="HS" > High <br>
 
 <button id="searchSchools" class="mdc-button mdc-button--raised">
   <div class="mdc-button__ripple"></div>
@@ -51,7 +57,14 @@ function displayTotalRec ( ){
 
   $("button#searchSchools").off("click");
 
+  var highschool;
+  var middleschool;
+  var eleschool;
+
   $("button#searchSchools").on("click", (e) => {
+    // grab the values from the checkbox
+    highschool = $("input[name='high']:checked").val();
+    console.log(highschool)
     getSchools();
   });
 
