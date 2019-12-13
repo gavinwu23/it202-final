@@ -1,2 +1,19 @@
-<canvas id="myCanvas" width="200" height="100">
+<canvas id="canvas" width="1500" height="700">
 </canvas>
+
+<script>
+
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "red";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // draw a blue circle
+  ctx.beginPath();
+  ctx.arc(100, 100, 50, 0, Math.PI * 2); // draw the circle
+  ctx.fillStyle = "blue";
+
+  ctx.closePath();
+  ctx.fill();
+
+  </script>

@@ -1,3 +1,4 @@
+<h1>Total Records </h1>
 <div class="mdc-typography--headline3">Search Schools</div>
 
 
@@ -22,12 +23,21 @@
             <span class="mdc-list-item__primary-text"></span>
             <span class="mdc-list-item__secondary-text"></span></span></li>
     <li role="separator" class="mdc-list-divider template"></li>
-  </ul> 
+  </ul>
 
 
 
 
 <script>
+
+  var totalRecords = 0;
+
+  // make it show to the top of the body
+function displayTotalRec ( ){
+  $("h1").append( totalRecords);
+  totalRecords = 0; // reset back to 0
+}
+
   var primaryCategories = [{"primary_category":"ES"}
 ,{"primary_category":"HS"}
 ,{"primary_category":"MS"}];
@@ -56,6 +66,9 @@
       console.log(response);
       $.each(response, (i,v) => {
         // clone template
+
+        totalRecords = totalRecords + 1; // update the total number of records
+
         let clone = $("ul#listSchools .mdc-list-item.template").clone();
 
         let dividerClone = divider.clone();
@@ -65,18 +78,23 @@
         dividerClone.removeClass("template");
 
         // set values
-        clone.find(".mdc-list-item__primary-text").text(v.long_name)
+        clone.find(".mdc-list-item__primary-text").text(v.long_name + " " + v.school_id)
+        clone.find(".mdc-list-item__secondary-text").text(v.address)
 
 
         // append to list
         $("ul#listSchools").append(dividerClone);
-        
-        
+
+
         $("ul#listSchools").append(clone);
 
-      });
-    });
-  }
+      }); // for each
+
+      displayTotalRec();
+
+    }); // get
+
+  } // let getSchools
 
 
 
